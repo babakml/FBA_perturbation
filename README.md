@@ -9,3 +9,10 @@ The toolbox is developed for MATLAB (mathworks.com) and uses cobratoolbox (https
 Make sure you have cobratoolbox installed.
 To obtain flux distribution profiles using 'fastFVA' function, IBM_CPLEX (IBM.com) must be installed.
 To obtain flux distribution profiles using 'optimizeCbModel', either IBM_CPLEX or glpk can be used.
+
+To perform perturbation: 
+ 
+ [fbasol_fin, randval_fin] = perturb(model_n, solver_n) #enter model and solver name as strings
+ 
+To perform statistical analysis:
+ table = stat(model_n, per_result, print)
