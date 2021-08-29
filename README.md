@@ -25,7 +25,7 @@ So for example:
 
 	[fbasol_fin, randval_fin] = perturb('mut-ms.xml' , 'ibm_cplex')
 
-this will take quite a long time to run and produce files:
+this will take quite a while to run and produce files:
 
 * `per_result*` files the file containing significantly different flux values in a sorted format
 
@@ -45,6 +45,16 @@ Which would produce a result like:
     'model name'    'variable'    'stable'    'sensitive'    'robust'    'affecting-avg(reaction-wise)'    'std-aff'    'affecting-avg(perturbation-wise)'    'std-aff'    'avg-sensitivity(reaction-wise)'    'std-sen'     'avg-sensitivity(perturbation-wise)'    'std-sen'       'max-sensitivity'    'min-sensitivity'    'robust with flux'    'robust without flux'    'robust-w-variability'    'avg-affected by ex'    'std-ex'     'max-affected by ex'    'max-affected by all'    'min-affected by all'
     'mut-ms.xml'    [     311]    [   398]    [      294]    [   415]    [                    150.1342]    [34.4665]    [                        123.3299]    [22.5815]    [                      152.1769]    [106.2194]    [                        1.2501e+03]    [1.0147e+03]    [            298]    [              2]    [             160]    [                255]    [                  17]    [          141.3600]    [30.1322]    [               213]    [           153.8000]    [            33.5000]
 
+
+## License
+wt_unconstrained: E.faecalis model with no biological constraint
+wt_medium: E. faecalis model constrained with medium compistion data
+wt-chem: E. faecalis model constrained with medium composition data + metabolic data
+wt_ms: E. faecalis model constrained with medium composition data + metabolic data + proteome data
+mut_unconstrained:△glnA E.faecalis model with no biological constraint
+mut-medium: △glnA E. faecalis model constrained with medium compistion data
+mut-chem: △glnA E. faecalis model constrained with medium composition data + metabolic data
+mut-ms: △glnA E. faecalis model constrained with medium composition data + metabolic data + proteome data
 
 ## License
 This project is licensed under the BSD license: 
