@@ -46,15 +46,16 @@ Which would produce a result like:
     'mut-ms.xml'    [     311]    [   398]    [      294]    [   415]    [                    150.1342]    [34.4665]    [                        123.3299]    [22.5815]    [                      152.1769]    [106.2194]    [                        1.2501e+03]    [1.0147e+03]    [            298]    [              2]    [             160]    [                255]    [                  17]    [          141.3600]    [30.1322]    [               213]    [           153.8000]    [            33.5000]
 
 
-## License
-wt_unconstrained: E.faecalis model with no biological constraint
-wt_medium: E. faecalis model constrained with medium compistion data
-wt-chem: E. faecalis model constrained with medium composition data + metabolic data
-wt_ms: E. faecalis model constrained with medium composition data + metabolic data + proteome data
-mut_unconstrained:△glnA E.faecalis model with no biological constraint
-mut-medium: △glnA E. faecalis model constrained with medium compistion data
-mut-chem: △glnA E. faecalis model constrained with medium composition data + metabolic data
-mut-ms: △glnA E. faecalis model constrained with medium composition data + metabolic data + proteome data
+## List of models
+
+* wt_unconstrained: E.faecalis model with no biological constraint
+* wt_medium: E. faecalis model constrained with medium compistion data
+* wt-chem: E. faecalis model constrained with medium composition data + metabolic data
+* wt_ms: E. faecalis model constrained with medium composition data + metabolic data + proteome data
+* mut_unconstrained:△glnA E.faecalis model with no biological constraint
+* mut-medium: △glnA E. faecalis model constrained with medium compistion data
+* mut-chem: △glnA E. faecalis model constrained with medium composition data + metabolic data
+* mut-ms: △glnA E. faecalis model constrained with medium composition data + metabolic data + proteome data
 
 ## License
 This project is licensed under the BSD license: 
