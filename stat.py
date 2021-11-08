@@ -2,7 +2,6 @@ import os
 import cbmpy as cbm
 import numpy as np
 import random
-os.chdir('/Users/babak/Documents/model_ensamble/flux_distribution_steady_state/mut_chem_cbm/')   
 
 
 modelDir = os.getcwd()                                                               
@@ -65,4 +64,8 @@ for i in range(len(cmod.reactions)):
         aff_u = np.unique(optsom_np[aff_ind[0],0])
         aff_num = len(aff_u)
         reac_sen.append([i2, reac_list[i], aff_u[0], sen])
+
+
+
+#np.savetxt("stat_results.csv", fba_np, delimiter=",")
     

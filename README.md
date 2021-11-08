@@ -45,6 +45,11 @@ Which would produce a result like:
     'model name'    'variable'    'stable'    'sensitive'    'robust'    'affecting-avg(reaction-wise)'    'std-aff'    'affecting-avg(perturbation-wise)'    'std-aff'    'avg-sensitivity(reaction-wise)'    'std-sen'     'avg-sensitivity(perturbation-wise)'    'std-sen'       'max-sensitivity'    'min-sensitivity'    'robust with flux'    'robust without flux'    'robust-w-variability'    'avg-affected by ex'    'std-ex'     'max-affected by ex'    'max-affected by all'    'min-affected by all'
     'mut-ms.xml'    [     311]    [   398]    [      294]    [   415]    [                    150.1342]    [34.4665]    [                        123.3299]    [22.5815]    [                      152.1769]    [106.2194]    [                        1.2501e+03]    [1.0147e+03]    [            298]    [              2]    [             160]    [                255]    [                  17]    [          141.3600]    [30.1322]    [               213]    [           153.8000]    [            33.5000]
 
+## Python files description
+
+* file flux_dist.pyperforms the perturbation, collecting flux distribution using FVa, and saves the results in fba_np.csv. This file can be used either by Matlab or python to perform the down stream analysis.
+* file calculation.py calculates the number of significantly change flux values and saves the results in final.csv which can be used for statistical analysis either in Matlab or python.
+* file stat.py uses final.csv as input and performs different statistical analyses. This file is still to be completed and does not yet provide all the statistical measures that are provided by stat.m in Matlab. For now, to obtain the full list of statistical measures, the final.csv file can be used by stat.m in Matlab.
 
 ## List of models
 

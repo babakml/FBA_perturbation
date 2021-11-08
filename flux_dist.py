@@ -2,11 +2,11 @@ import os
 import cbmpy as cbm
 import numpy as np 
 import random
-os.chdir('/Users/babak/Documents/model_ensamble/flux_distribution_steady_state/mut_chem_cbm/')   
+ 
 
 
 modelDir = os.getcwd()                                                               
-cmod=cbm.CBRead.readSBML3FBC('mut-medium.xml', modelDir)
+cmod=cbm.CBRead.readSBML3FBC('mut-chem.xml', modelDir)
 cmod.createGeneAssociationsFromAnnotations()
 
 
@@ -49,6 +49,6 @@ for i in prt_ind:
         cmod.setReactionBounds(n[i], min_org,max_org)
         
         
-#np.hstack((fba_sol,ff[:,0]))
-#fba_np = np.array(fba_sol)          
-#np.savetxt("fba_np.csv", fba_np, delimiter=",")
+    np.hstack((fba_sol,ff[:,0]))
+fba_np = np.array(fba_sol)          
+np.savetxt("fba_np.csv", fba_np, delimiter=",")

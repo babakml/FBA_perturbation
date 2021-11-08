@@ -2,7 +2,6 @@ import os
 import cbmpy as cbm
 import numpy as np
 import random
-os.chdir('/Users/babak/Documents/model_ensamble/flux_distribution_steady_state/mut_chem_cbm/')   
 
 
 modelDir = os.getcwd()                                                               
