@@ -41,18 +41,7 @@ model = readCbModel(model_n);
 [minFluxF1, maxFluxF1, optsol, ret, fbasol, fvamin, fvamax, statussolmin, statussolmax] = fastFVA(model);
 
 
-for i =1:numel(maxFluxF1)
-if maxFluxF1(i)< model.lb(i)
-    maxabs = abs(maxFluxF1(i));
-    lbabs = abs(model.lb(i));
-    dabs = abs(maxabs - lbabs);
-    if dabs < 0.000001
 
-        
-         maxFluxF1(i)=model.lb(i);
-
-    end
-end
 end
 da = maxFluxF1;
 db = minFluxF1;
@@ -83,24 +72,20 @@ for i =1:rxn_n
         da(i)
         db(i)
         da(i) - db(i)
-        [minFluxF1, maxFluxF1, optsol, ret, fbasol, fvamin, fvamax, statussolmin, statussolmax] = fastFVA(model);
-        %to avoid unexpected situation where maximum boundary gets lower
-        %than lower boundary (due to misreading of the model or corrupted files)
-        for z =1:numel(maxFluxF1)
-            if maxFluxF1(z)< model.lb(z)
-                maxabs = abs(maxFluxF1(z));
-                lbabs = abs(model.lb(z));
-                dabs = abs(maxabs - lbabs);
-                if dabs < 0.000001
-                    maxFluxF1(z)=model.lb(z);
-                end
-            end
-        end
+        %collecting flux distributions using FBA
         
-        %saving flux distribution profiles and random values in fbasol_m &
-        %randval_m, respectively
-        fbasol_m = [fbasol_m, fbasol];
+         sol_dist = optimizeCbModel(model);
+         fbasol_m = [fbasol_m, sol_dist.v];
+         
+        %flux distributions using FVA
+        
+        %[minFluxF1, maxFluxF1, optsol, ret, fbasol, fvamin, fvamax, statussolmin, statussolmax] = fastFVA(model);
+        %fbasol_m = [fbasol_m, fbasol];
+        
+        %saving the random value in randval_m
         randval_m = [randval_m, randval];
+        
+        
         %bringing the original uppre and lower bound back
         model.ub(i) = pu;
         model.lb(i) = pl;
