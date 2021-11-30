@@ -71,13 +71,15 @@ for i =1:rxn_n
         i
         da(i)
         db(i)
+
+
         da(i) - db(i)
         %collecting flux distributions using FBA
         
-         sol_dist = optimizeCbModel(model);
-         fbasol_m = [fbasol_m, sol_dist.v];
+        sol_dist = optimizeCbModel(model);
+        fbasol_m = [fbasol_m, sol_dist.v];
          
-        %flux distributions using FVA
+        %collecting flux distributions using FVA
         
         %[minFluxF1, maxFluxF1, optsol, ret, fbasol, fvamin, fvamax, statussolmin, statussolmax] = fastFVA(model);
         %fbasol_m = [fbasol_m, fbasol];
