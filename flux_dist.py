@@ -75,7 +75,8 @@ def perturb(model, method):
 
         
         
-    np.savetxt("fba_np_test.csv", flux_dist, delimiter=",")
-    np.savetxt("rand_val_test.csv", rand_val, delimiter=",")
+    np.savetxt("fba_sol_fin.csv", flux_dist, delimiter=",")
+    np.savetxt("rand_val_fin.csv", rand_val, delimiter=",")
+    print flux_dist, rand_val_fin
     
 

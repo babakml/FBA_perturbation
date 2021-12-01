@@ -47,9 +47,31 @@ Which would produce a result like:
 
 ## Python files description
 
-* file flux_dist.pyperforms the perturbation, collecting flux distribution using FVa, and saves the results in fba_np.csv. This file can be used either by Matlab or python to perform the down stream analysis.
+* file flux_dist.py performs the perturbation, collecting flux distribution using FVa, and saves the results in 'fba_sol_fin.csv' and 'rand_val_fin.csv'. The file 'fba_sol_fin.csv' can be used either by Matlab or python to perform the down stream analysis.
+
+* Instruction
+
+
+
+example:
+
+from flux_dist import perturb
+
+perturb(model='mut-chem.xml', method='fba')
+
+
 * file calculation.py calculates the number of significantly change flux values and saves the results in final.csv which can be used for statistical analysis either in Matlab or python.
+
+example:
+
+from calculation import calculation 
+
+calculation(model='mut-chem.xml', pert_result='fba_sol_fin.csv')
+
+
 * file stat.py uses final.csv as input and performs different statistical analyses. This file is still to be completed and does not yet provide all the statistical measures that are provided by stat.m in Matlab. For now, to obtain the full list of statistical measures, the final.csv file can be used by stat.m in Matlab.
+
+
 
 ## List of models
 
