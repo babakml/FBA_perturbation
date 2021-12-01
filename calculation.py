@@ -16,8 +16,8 @@ f, n = cbm.FluxVariabilityAnalysis(cmod, optPercentage=100)
 
 #finding reactions that got significantly affected by perturbation
 
-fba_np = np.genfromtxt('fba_np.csv', delimiter=',')
-rand_np = np.genfromtxt('rand_np.csv', delimiter=',')
+fba_np = np.genfromtxt('fba_np_test.csv', delimiter=',')
+rand_np = np.genfromtxt('rand_val_test.csv', delimiter=',')
 r=range(10)
 
 opt_som = []
@@ -44,11 +44,7 @@ for j in range(len((fba_np))):
             c=c+1
             l=1
         
-        #if i == 708:
-         #   l = l + 1
-          #  if l ==10:
-           #     l=1
-            #    c=c+1
+
             
             
             

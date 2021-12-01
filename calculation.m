@@ -1,4 +1,4 @@
-function [per_result] = calculation(model, fbasol_fin, randval_fin)
+function [per_result] = calculation(model_n, fbasol_fin, randval_fin)
 
 % calculation finds the optimal values in flux distribution profiles following perturbation that
 % are significantly different (>0.05 0r >0.000001) from the original FBA/FVA flux distribution
@@ -18,7 +18,9 @@ function [per_result] = calculation(model, fbasol_fin, randval_fin)
 
 %per_result: significantly different flux values in a sorted format
 
+%Example:
 
+%calculation('mut-chem.xml', 'fbasol_fin.dat', 'randval_fin.dat')
 
 % Authors:
 
@@ -26,6 +28,9 @@ function [per_result] = calculation(model, fbasol_fin, randval_fin)
 
 % Last updated: August 2021
 
+model = readCbModel(model_n);
+load(fbasol_fin)
+load(randval_fin)
 
 
 [minFluxF1, maxFluxF1, optsol, ret, fbasol, fvamin, fvamax, statussolmin, statussolmax] = fastFVA(model);

@@ -19,6 +19,14 @@ function table = stat(model_n, per_result, print)
 %table: statistical categories obtained from analysis of flux distribution
 %profiles
 
+%Example:
+
+%table = stat('mut-chem.xml', 'per_result') using the perturbation results
+%from MATLAB version
+
+%table = stat('mut-chem.xml', 'final.csv') using the perturbation result
+%from the python version
+
 
 
 % Authors:

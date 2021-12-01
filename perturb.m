@@ -1,4 +1,4 @@
-function [fbasol_fin, randval_fin] = perturb(model_n, solver_n)
+function [fbasol_fin, randval_fin] = perturb(model_n, solver_n, method)
 
 %pertub function discovers the effect of random perturbation in
 %FBA/FVA results. It selects 10 random values in the feasible interval of
@@ -23,6 +23,10 @@ function [fbasol_fin, randval_fin] = perturb(model_n, solver_n)
 
 % randval_fin: random values at which variable reactions were fixed
 
+%Example:
+
+% [fbasol_fin, randval_fin] = perturb('mut-chem.xml','ibm_cplex','fba')
+
 % Authors:
 
 % Seyed Babak Loghmani
@@ -42,7 +46,7 @@ model = readCbModel(model_n);
 
 
 
-end
+
 da = maxFluxF1;
 db = minFluxF1;
 fbasol_fin = [];
@@ -75,15 +79,15 @@ for i =1:rxn_n
 
         da(i) - db(i)
         %collecting flux distributions using FBA
+        if method == 'fba'
+            sol_dist = optimizeCbModel(model);
+            fbasol_m = [fbasol_m, sol_dist.v];
         
-        sol_dist = optimizeCbModel(model);
-        fbasol_m = [fbasol_m, sol_dist.v];
-         
         %collecting flux distributions using FVA
-        
-        %[minFluxF1, maxFluxF1, optsol, ret, fbasol, fvamin, fvamax, statussolmin, statussolmax] = fastFVA(model);
-        %fbasol_m = [fbasol_m, fbasol];
-        
+        elseif  method == 'fva'
+            [minFluxF1, maxFluxF1, optsol, ret, fbasol, fvamin, fvamax, statussolmin, statussolmax] = fastFVA(model);
+            fbasol_m = [fbasol_m, fbasol];
+        end
         %saving the random value in randval_m
         randval_m = [randval_m, randval];
         
@@ -109,4 +113,3 @@ end
 save fbasol_fin.dat fbasol_fin -ascii -double
 save randval_fin.dat randval_fin -ascii -double
 
-calculation(model, fbasol_fin, randval_fin)
