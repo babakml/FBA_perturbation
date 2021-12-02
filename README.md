@@ -4,36 +4,53 @@ contact: babak.loghmani@bioquant.uni-heidelberg.de
 a toolbox to perturb FBA flux distribution in constraint-based metabolic networks
 
 This toolbox is designed to discover the uncertainties in FBA flux distribution by perturbing the system using random values.
-The toolbox is developed for [MATLAB](mathworks.com) and uses the [cobratoolbox](https://opencobra.github.io/cobratoolbox/stable/) to collect flux distribution profiles.
+The toolbox is developed for [MATLAB](mathworks.com) and uses the [cobratoolbox](https://opencobra.github.io/cobratoolbox/stable/) to collect flux distribution profiles. A python version is also developed based o Pysces CBMpy (https://github.com/SystemsBioinformatics/cbmpy).
 
 ## Requirements
 
+ * On MATLAB:
  * Make sure you have cobratoolbox installed.
  * To obtain flux distribution profiles using the `fastFVA` function, [IBM\_CPLEX](IBM.com) must be installed. The cobra toolbox works only for cplex versions up to 12.8. 
  * To obtain flux distribution profiles using `optimizeCbModel`, either IBM\_CPLEX or glpk can be used.
 
+ * On python 2:
+ * Make sure you have Pysces CBMpy installed.
+ * Make sure you use IBM_Cplex as the solver.
+
 ## Usage
-To perform the perturbations use: 
+* To perform the perturbations use: 
  
- 	[fbasol_fin, randval_fin] = perturb(model_n, solver_n) #enter model and solver name as strings
+ 	[fbasol_fin, randval_fin] = perturb(model_n, solver_n, method) 
+
+ 	enter model and solver and method of choice (fba or fva) name as strings.
+
+ * To sort the output:
+
+	[per_result] = calculation(model_n, fbasol_fin, randval_fin)
+
+	enter the model and the result of perturbation as the inputs
  
-To perform statistical analysis:
+* To perform statistical analysis:
 
 	table = stat(model_n, per_result, print)
 
-So for example: 
+* So for example: 
 
-	[fbasol_fin, randval_fin] = perturb('mut-ms.xml' , 'ibm_cplex')
+	[fbasol_fin, randval_fin] = perturb('mut-ms.xml' , 'ibm_cplex', 'fba')
 
-this will take quite a while to run and produce files:
+* In case the method of use is fva, this will take quite a while to run and produce files:
 
-* `per_result*` files the file containing significantly different flux values in a sorted format
+* `fbasol_fin` file contains significantly different flux values in a sorted format
 
-Then to calculate the statistics for this model you'd run:
+* `randval_fin` file contains the random values at which reactions were fixed.
+
+* `per_result` file contains all the significant flux changes in a sorted format. 
+
+* Then to calculate the statistics for this model you'd run:
 
 	table = stat('mut-ms.xml', 'per_result', 'print')
 
-Which would produce a result like:
+* Which would produce a result like:
 
 	table =
 

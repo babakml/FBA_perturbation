@@ -15,6 +15,8 @@ function [fbasol_fin, randval_fin] = perturb(model_n, solver_n, method)
 
 % model_n: metabolic model in SBML format
 % solver_n: solver name
+% method: 'fba' or 'fva', to determine the method of use to obtain flux
+% distributions
 
 % OUTPUT
 
