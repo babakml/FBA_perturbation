@@ -9,97 +9,98 @@ The toolbox is developed for [MATLAB](mathworks.com) and uses the [cobratoolbox]
 ## Requirements
 
  * On MATLAB:
- * Make sure you have cobratoolbox installed.
- * To obtain flux distribution profiles using the `fastFVA` function, [IBM\_CPLEX](IBM.com) must be installed. The cobra toolbox works only for cplex versions up to 12.8. 
- * To obtain flux distribution profiles using `optimizeCbModel`, either IBM\_CPLEX or glpk can be used.
+ 
+   * Make sure you have [cobratoolbox](https://opencobra.github.io/cobratoolbox/stable/installation.html) installed.
+   * To obtain flux distribution profiles using the `fastFVA` function, [IBM\_CPLEX](https://www.ibm.com/support/pages/cplex-optimization-studio-v128) must be installed. The cobra toolbox works only for cplex versions up to 12.8. 
+   * To obtain flux distribution profiles using `optimizeCbModel`, either IBM\_CPLEX or glpk can be used.
+
+
 
  * On python 2:
- * Make sure you have Pysces CBMpy installed.
- * Make sure you use IBM_Cplex as the solver.
+   * Make sure you have Pysces [CBMpy](https://pythonhosted.org/cbmpy/install_doc.html) installed.
+   * Make sure you use [IBM_Cplex](https://www.ibm.com/support/pages/cplex-optimization-studio-v128) as the solver.
 
-## Usage
+## Executing the Matlab functions
+
 * To perform the perturbations use: 
  
- 	[fbasol_fin, randval_fin] = perturb(model_n, solver_n, method) 
+ 	`[fbasol_fin, randval_fin] = perturb(model_n, solver_n, method)`
 
  	enter model and solver and method of choice (fba or fva) name as strings.
 
- * To sort the output:
+* To sort the output:
 
-	[per_result] = calculation(model_n, fbasol_fin, randval_fin)
+	`[per_result] = calculation(model_n, fbasol_fin, randval_fin)`
 
 	enter the model and the result of perturbation as the inputs
  
 * To perform statistical analysis:
 
-	table = stat(model_n, per_result, print)
+	`table = stat(model_n, per_result, print)`
 
 * So for example: 
 
-	[fbasol_fin, randval_fin] = perturb('mut-ms.xml' , 'ibm_cplex', 'fba')
+	`[fbasol_fin, randval_fin] = perturb('mut-ms.xml' , 'ibm_cplex', 'fba')`
+
 
 * In case the method of use is fva, this will take quite a while to run and produce files:
 
-* `fbasol_fin` file contains significantly different flux values in a sorted format
+  * `fbasol_fin` file contains significantly different flux values in a sorted format
 
-* `randval_fin` file contains the random values at which reactions were fixed.
+  * `randval_fin` file contains the random values at which reactions were fixed.
 
-* `per_result` file contains all the significant flux changes in a sorted format. 
+  * `per_result` file contains all the significant flux changes in a sorted format. 
 
 * Then to calculate the statistics for this model you'd run:
 
-	table = stat('mut-ms.xml', 'per_result', 'print')
+	`table = stat('mut-ms.xml', 'per_result', 'print')`
 
 * Which would produce a result like:
 
-	table =
+		table =
 
-  	2×23 table
+		2×23 table
 
-        out1           out2         out3         out4          out5                   out6                   out7                      out8                     out9                    out10                    out11                      out12                       out13              out14                out15                out16                   out17                    out18                    out19              out20             out21                    out22                    out23        
-    ____________    __________    ________    ___________    ________    ______________________________    _________    __________________________________    _________    ________________________________    __________    ____________________________________    ____________    _________________    _________________    __________________    _____________________    ______________________    ____________________    _________    ____________________    _____________________    _____________________
+			out1           out2         out3         out4          out5                   out6                   out7                      out8                     out9                    out10                    out11                      out12                       out13              out14                out15                out16                   out17                    out18                    out19              out20             out21                    out22                    out23        
+		____________    __________    ________    ___________    ________    ______________________________    _________    __________________________________    _________    ________________________________    __________    ____________________________________    ____________    _________________    _________________    __________________    _____________________    ______________________    ____________________    _________    ____________________    _____________________    _____________________
 
-    'model name'    'variable'    'stable'    'sensitive'    'robust'    'affecting-avg(reaction-wise)'    'std-aff'    'affecting-avg(perturbation-wise)'    'std-aff'    'avg-sensitivity(reaction-wise)'    'std-sen'     'avg-sensitivity(perturbation-wise)'    'std-sen'       'max-sensitivity'    'min-sensitivity'    'robust with flux'    'robust without flux'    'robust-w-variability'    'avg-affected by ex'    'std-ex'     'max-affected by ex'    'max-affected by all'    'min-affected by all'
-    'mut-ms.xml'    [     311]    [   398]    [      294]    [   415]    [                    150.1342]    [34.4665]    [                        123.3299]    [22.5815]    [                      152.1769]    [106.2194]    [                        1.2501e+03]    [1.0147e+03]    [            298]    [              2]    [             160]    [                255]    [                  17]    [          141.3600]    [30.1322]    [               213]    [           153.8000]    [            33.5000]
+		'model name'    'variable'    'stable'    'sensitive'    'robust'    'affecting-avg(reaction-wise)'    'std-aff'    'affecting-avg(perturbation-wise)'    'std-aff'    'avg-sensitivity(reaction-wise)'    'std-sen'     'avg-sensitivity(perturbation-wise)'    'std-sen'       'max-sensitivity'    'min-sensitivity'    'robust with flux'    'robust without flux'    'robust-w-variability'    'avg-affected by ex'    'std-ex'     'max-affected by ex'    'max-affected by all'    'min-affected by all'
+		'mut-ms.xml'    [     311]    [   398]    [      294]    [   415]    [                    150.1342]    [34.4665]    [                        123.3299]    [22.5815]    [                      152.1769]    [106.2194]    [                        1.2501e+03]    [1.0147e+03]    [            298]    [              2]    [             160]    [                255]    [                  17]    [          141.3600]    [30.1322]    [               213]    [           153.8000]    [            33.5000]
 
 ## Python files description
 
-* file flux_dist.py performs the perturbation, collecting flux distribution using FVa, and saves the results in 'fba_sol_fin.csv' and 'rand_val_fin.csv'. The file 'fba_sol_fin.csv' can be used either by Matlab or python to perform the down stream analysis.
-
-* Instruction
-
-
+The file `flux_dist.py` performs the perturbation, collecting flux distribution using FVA, and saves the results in `fba_sol_fin.csv` and `rand_val_fin.csv`. The file `fba_sol_fin.csv` can be used either by Matlab or python to perform the down stream analysis.
 
 example:
 
-from flux_dist import perturb
+	from flux_dist import perturb
+	
+	perturb(model='mut-chem.xml', method='fba')
 
-perturb(model='mut-chem.xml', method='fba')
 
-
-* file calculation.py calculates the number of significantly change flux values and saves the results in final.csv which can be used for statistical analysis either in Matlab or python.
+The file `calculation.py` calculates the number of significantly change flux values and saves the results in `final.csv` which can be used for statistical analysis either in Matlab or python.
 
 example:
 
-from calculation import calculation 
+	from calculation import calculation 
+	
+	calculation(model='mut-chem.xml', pert_result='fba_sol_fin.csv')
 
-calculation(model='mut-chem.xml', pert_result='fba_sol_fin.csv')
 
-
-* file stat.py uses final.csv as input and performs different statistical analyses. This file is still to be completed and does not yet provide all the statistical measures that are provided by stat.m in Matlab. For now, to obtain the full list of statistical measures, the final.csv file can be used by stat.m in Matlab.
+The file `stat.py` uses `final.csv` as input and performs different statistical analyses. This file is still to be completed and does not yet provide all the statistical measures that are provided by `stat.m` in Matlab. For now, to obtain the full list of statistical measures, the `final.csv` file can be used by stat.m in Matlab.
 
 
 
 ## List of models
 
-* wt_unconstrained: E.faecalis model with no biological constraint
-* wt_medium: E. faecalis model constrained with medium compistion data
-* wt-chem: E. faecalis model constrained with medium composition data + metabolic data
-* wt_ms: E. faecalis model constrained with medium composition data + metabolic data + proteome data
-* mut_unconstrained:△glnA E.faecalis model with no biological constraint
-* mut-medium: △glnA E. faecalis model constrained with medium compistion data
-* mut-chem: △glnA E. faecalis model constrained with medium composition data + metabolic data
-* mut-ms: △glnA E. faecalis model constrained with medium composition data + metabolic data + proteome data
+* `wt_unconstrained`: E.faecalis model with no biological constraint
+* `wt_medium`: E. faecalis model constrained with medium compistion data
+* `wt-chem`: E. faecalis model constrained with medium composition data + metabolic data
+* `wt_ms`: E. faecalis model constrained with medium composition data + metabolic data + proteome data
+* `mut_unconstrained`:△glnA E.faecalis model with no biological constraint
+* `mut-medium`: △glnA E. faecalis model constrained with medium compistion data
+* `mut-chem`: △glnA E. faecalis model constrained with medium composition data + metabolic data
+* `mut-ms`: △glnA E. faecalis model constrained with medium composition data + metabolic data + proteome data
 
 ## License
 This project is licensed under the BSD license: 
