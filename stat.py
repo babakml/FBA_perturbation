@@ -4,11 +4,24 @@ import numpy as np
 import random
 
 
-def stat(model, sorted_res):
+def stat(model, sorted_res='final.csv'):
+    """stat.py uses `final.csv` as input and performs different statistical analyses. 
+    
+    This file is still to be completed and does not yet provide 
+    all the statistical measures that are provided by `stat.m` in 
+    Matlab. For now, to obtain the full list of statistical measures, 
+    the `final.csv` file can be used by stat.m in Matlab.
+    
+    :param model: the model to be loaded 
+    :type model: str 
+    
+    :param sorted_res: the results as obtained by running `calculation`
+    :type sorted_res: str
+    
+    """
     modelDir = os.getcwd()                                                               
-    cmod=cbm.CBRead.readSBML3FBC('mut-chem.xml', modelDir)
+    cmod=cbm.CBRead.readSBML3FBC(model, modelDir)
     cmod.createGeneAssociationsFromAnnotations()
-
 
 
     #fva
@@ -16,7 +29,6 @@ def stat(model, sorted_res):
 
 
     ###finding various statistical measures
-
     prt_ind =[]
     leng = range(709)
     for i in leng:
@@ -28,9 +40,7 @@ def stat(model, sorted_res):
     stable = len(n) - fva
 
     #finding how many reactions were affected by each reaction
-
-
-    optsom_np = np.genfromtxt('final.csv', delimiter=',')
+    optsom_np = np.genfromtxt(sorted_res, delimiter=',')
     #optsom_np = numpy.array(opt_som) 
 
     mx = len(optsom_np)
@@ -67,11 +77,7 @@ def stat(model, sorted_res):
             reac_sen.append([i2, reac_list[i], aff_u[0], sen])
             
             
-    print fva, stable, num_aff, aff_avg, aff_avg_std, aff_max, aff_min
-
-
-
+    print (fva, stable, num_aff, aff_avg, aff_avg_std, aff_max, aff_min)
 
 
 #np.savetxt("stat_results.csv", fba_np, delimiter=",")
-    

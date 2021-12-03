@@ -5,12 +5,23 @@ import time
 import random
  
 def perturb(model, method):
+    """performs the perturbation, collecting flux distribution using FVA, 
+    
+    and saves the results in `fba_sol_fin.csv` and `rand_val_fin.csv`. 
+    The file `fba_sol_fin.csv` can be used either by Matlab or python to 
+    perform the down stream analysis.
+    
+    :param model: the model to be loaded (assumed to be in current directory)
+    :type model: str 
+    
+    :param method: the method to be used either 'fba' or 'fva'
+    :type method: str
+    
+    """
     
     modelDir = os.getcwd()                                                               
-    cmod=cbm.CBRead.readSBML3FBC('mut-chem.xml', modelDir)
+    cmod=cbm.CBRead.readSBML3FBC(model, modelDir)
     cmod.createGeneAssociationsFromAnnotations()
-
-
 
     #fva
     fva_res, names = cbm.FluxVariabilityAnalysis(cmod, optPercentage=100)
@@ -22,7 +33,6 @@ def perturb(model, method):
 
 
     #preparing for perturbation
- 
     prt_ind =[]
 
     rxns=cmod.getReactionIds()
@@ -71,12 +81,7 @@ def perturb(model, method):
                 flux_dist.append(sol_dist)
                 rand_val.append(rand)
                 
-                
 
-        
-        
     np.savetxt("fba_sol_fin.csv", flux_dist, delimiter=",")
     np.savetxt("rand_val_fin.csv", rand_val, delimiter=",")
-    print flux_dist, rand_val_fin
-    
-
+    print (flux_dist, rand_val_fin)

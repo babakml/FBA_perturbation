@@ -5,19 +5,26 @@ import random
 
 
 def calculation(model, pert_result):
+    """calculates the number of significantly change flux values 
+       and saves the results in `final.csv` which can be used for 
+       statistical analysis either in Matlab or python.
+
+       :param model: the model filename to be used (is assumed to 
+                     be in the current directory)
+       :type model: str
+       
+       :param pert_result: csv file of pertubations obtained by running `perturb`
+       :type pert_result: str 
+    """
     
     modelDir = os.getcwd()                                                               
     cmod=cbm.CBRead.readSBML3FBC(model, modelDir)
     cmod.createGeneAssociationsFromAnnotations()
 
-
-
     #fva
     f, n = cbm.FluxVariabilityAnalysis(cmod, optPercentage=100)
 
-
     #finding reactions that got significantly affected by perturbation
-
     fba_np = np.genfromtxt(pert_result, delimiter=',')
     #rand_np = np.genfromtxt('rand_val_test.csv', delimiter=',')
     r=range(10)
@@ -46,16 +53,5 @@ def calculation(model, pert_result):
                 c=c+1
                 l=1
         
-
-            
-            
-            
-            
     np.savetxt("final.csv", opt_som, delimiter=",")
-    print final
-
-
-        
-        
-            
-    
+    print (opt_som)
