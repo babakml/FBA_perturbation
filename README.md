@@ -28,11 +28,11 @@ The toolbox is developed for [MATLAB](mathworks.com) and uses the [cobratoolbox]
 
  	enter model and solver and method of choice (fba or fva) name as strings.
 
-* To sort the output:
+* To find significant flux changes and sort the output:
 
-	`[per_result] = calculation(model_n, fbasol_fin, randval_fin)`
+	`[per_result] = calculation(model_n, fbasol_fin, randval_fin, method)`
 
-	enter the model and the result of perturbation as the inputs
+	enter the model and the result of perturbation as the inputs, as well as the method of choice (fba or fva)
  
 * To perform statistical analysis:
 
@@ -40,7 +40,7 @@ The toolbox is developed for [MATLAB](mathworks.com) and uses the [cobratoolbox]
 
 * So for example: 
 
-	`[fbasol_fin, randval_fin] = perturb('mut-ms.xml' , 'ibm_cplex', 'fba')`
+	`[fbasol_fin, randval_fin] = perturb('mut-chem.xml' , 'ibm_cplex', 'fba')`
 
 
 * In case the method of use is fva, this will take quite a while to run and produce files:
@@ -48,12 +48,16 @@ The toolbox is developed for [MATLAB](mathworks.com) and uses the [cobratoolbox]
   * `fbasol_fin` file contains significantly different flux values in a sorted format
 
   * `randval_fin` file contains the random values at which reactions were fixed.
+  
+* To find significant flux changes:
+
+	* [per_result] = calculation('mut-chem.xml','fbasol_fin.dat','randval_fin.dat','fba')
 
   * `per_result` file contains all the significant flux changes in a sorted format. 
 
 * Then to calculate the statistics for this model you'd run:
 
-	`table = stat('mut-ms.xml', 'per_result', 'print')`
+	`table = stat('mut-chem.xml', 'per_result', 'print')`
 
 * Which would produce a result like:
 
@@ -69,7 +73,7 @@ The toolbox is developed for [MATLAB](mathworks.com) and uses the [cobratoolbox]
 
 ## Python files description
 
-The file `flux_dist.py` performs the perturbation, collecting flux distribution using FVA, and saves the results in `fba_sol_fin.csv` and `rand_val_fin.csv`. The file `fba_sol_fin.csv` can be used either by Matlab or python to perform the down stream analysis.
+The file `flux_dist.py` performs the perturbation, collecting flux distribution using FVA, and saves the results in `fba_sol_fin.csv` and `rand_val_fin.csv`. The file `fba_sol_fin.csv` can be used by calculation function in python to perform the down stream analysis.
 
 example:
 
@@ -87,7 +91,7 @@ example:
 	calculation(model='mut-chem.xml', pert_result='fba_sol_fin.csv')
 
 
-The file `stat.py` uses `final.csv` as input and performs different statistical analyses. This file is still to be completed and does not yet provide all the statistical measures that are provided by `stat.m` in Matlab. For now, to obtain the full list of statistical measures, the `final.csv` file can be used by stat.m in Matlab.
+The file `stat_asl.py` uses `final.csv` as input and performs different statistical analyses. This file is still to be completed and does not yet provide all the statistical measures that are provided by `stat.m` in Matlab. For now, to obtain the full list of statistical measures, the `final.csv` file can be used by stat.m in Matlab.
 
 
 

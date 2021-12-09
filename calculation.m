@@ -23,13 +23,15 @@ function [per_result] = calculation(model_n, fbasol_fin, randval_fin, method)
 
 %Example:
 
-%calculation [per_result] = calculation('mut-chem.xml','fbasol_fin.dat','randval_fin.dat','fba')
+% [per_result] = calculation('mut-chem.xml','fbasol_fin.dat','randval_fin.dat','fba')
 
 % Authors:
 
 % Seyed Babak Loghmani
 
 % Last updated: August 2021
+
+initCobraToolbox;
 
 model = readCbModel(model_n);
 load(fbasol_fin)
