@@ -4,7 +4,8 @@ import numpy as np
 import random
 
 
-def stat(model, sorted_res='final.csv'):
+def stat(model, sorted_res):
+    
     """stat.py uses `final.csv` as input and performs different statistical analyses. 
     
     This file is still to be completed and does not yet provide 
@@ -25,19 +26,21 @@ def stat(model, sorted_res='final.csv'):
 
 
     #fva
-    f, n = cbm.FluxVariabilityAnalysis(cmod, optPercentage=100)
+    fva_res, names = cbm.FluxVariabilityAnalysis(cmod, optPercentage=100)
 
 
     ###finding various statistical measures
+    
+    #finding the index of perturbed reactions
     prt_ind =[]
     leng = range(709)
     for i in leng:
-        if f[i,4] > 0.000001:
+        if fva_res[i,4] > 0.000001:
             prt_ind.append(i)
         
         
-    fva = np.count_nonzero(f[:,4])
-    stable = len(n) - fva
+    fva = np.count_nonzero(fva_res[:,4])
+    stable = len(names) - fva
 
     #finding how many reactions were affected by each reaction
     optsom_np = np.genfromtxt(sorted_res, delimiter=',')
@@ -77,7 +80,7 @@ def stat(model, sorted_res='final.csv'):
             reac_sen.append([i2, reac_list[i], aff_u[0], sen])
             
             
-    print (fva, stable, num_aff, aff_avg, aff_avg_std, aff_max, aff_min)
+    print (fva, stable, aff_avg, aff_avg_std, aff_max, aff_min)
 
 
 #np.savetxt("stat_results.csv", fba_np, delimiter=",")

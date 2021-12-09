@@ -8,7 +8,7 @@ function [fbasol_fin, randval_fin] = perturb(model_n, solver_n, method)
 
 %USAGE
 
-%    [fbasol_fin, randval_fin] = perturb(model_n, solver_n)
+%    [fbasol_fin, randval_fin] = perturb(model_n, solver_n, method)
 
 
 %INPUT
