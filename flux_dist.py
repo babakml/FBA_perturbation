@@ -83,9 +83,10 @@ def perturb(model, method):
         
             #collecting flux distributions using FVA
             if method == 'fva':
+
                 
                 fva_res_new, name_n = cbm.FluxVariabilityAnalysis(cmod, optPercentage=100) #FVA
-                sol_dist.append(fva_res_new[:,0])                                          #collecting flux distribution profile
+                sol_dist=fva_res_new[:,0]                                                  #collecting flux distribution profile
                 cmod.setReactionBounds(names[reac], min_org,max_org)                       #bringing the original upper and lower bound back
                 flux_dist.append(sol_dist)
                 rand_val.append(rand)
