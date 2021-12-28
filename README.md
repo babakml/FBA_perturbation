@@ -73,6 +73,8 @@ The toolbox is developed for [MATLAB](mathworks.com) and uses the [cobratoolbox]
 
 ## Python files description
 
+#Python 2.7
+
 The file `flux_dist.py` performs the perturbation, collecting flux distribution using FVA, and saves the results in `fba_sol_fin.csv` and `rand_val_fin.csv`. The file `fba_sol_fin.csv` can be used by calculation function in python to perform the down stream analysis.
 
 example:
@@ -88,12 +90,14 @@ example:
 
 	from calculation import calculation 
 	
-	calculation(model='mut-chem.xml', pert_result='fba_sol_fin.csv')
+	calculation(model='mut-chem.xml', pert_result='fba_sol_fin.csv', method='fba')
 
 
 The file `stat_asl.py` uses `final.csv` as input and performs different statistical analyses. This file is still to be completed and does not yet provide all the statistical measures that are provided by `stat.m` in Matlab. For now, to obtain the full list of statistical measures, the `final.csv` file can be used by stat.m in Matlab.
 
+#Python 3
 
+The files `flux_dist_p3.py`, `calculation_p3.py` and `stat_asl_p3.py` are adjusted for python 3. Make sure that the cplex version is compatible with your python 3 version. Pysces CBMpy does not support all the modules for glpk on python 3, so make sure that you have a compatible cplex version.
 
 ## List of models
 

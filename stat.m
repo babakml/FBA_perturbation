@@ -234,7 +234,7 @@ max_ex = max(nimp_e); %max affected by Ex
 out={'model name','variable','stable','sensitive','robust','affecting-avg(reaction-wise)','std-aff','affecting-avg(perturbation-wise)','std-aff','avg-sensitivity(reaction-wise)','std-sen','avg-sensitivity(perturbation-wise)','std-sen','max-sensitivity','min-sensitivity','robust with flux','robust without flux','robust-w-variability','avg-affected by ex','std-ex','max-affected by ex','max-affected by all','min-affected by all';model.description,fva,stable,num_sen,num_robust,mean_re2,std_dev_meanre2,mean_re,std_dev_meanre,msen,std_dev_sen,msen2,std_dev_sen2,maxsen,minsen,num_robust_wf,num_robust_wof,num_robust_var,avg_ex,std_dev_ex,max_ex,max_re,min_re};
 table=cell2table(out);
 if (print)
-    writetable(table,'statistics.xlsx','WriteVariableNames',0)
+    writetable(table,'statistics.xls','WriteVariableNames',0)
 end
 
 
