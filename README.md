@@ -19,6 +19,11 @@ The toolbox is developed for [MATLAB](mathworks.com) and uses the [cobratoolbox]
  * On python 2:
    * Make sure you have Pysces [CBMpy](https://pythonhosted.org/cbmpy/install_doc.html) installed.
    * Make sure you use [IBM_Cplex](https://www.ibm.com/support/pages/cplex-optimization-studio-v128) as the solver.
+   
+   
+ * On python 3:
+   * Make sure you have Pysces [CBMpy](https://pythonhosted.org/cbmpy/install_doc.html) installed.
+   * Make sure you use [IBM_Cplex](https://www.ibm.com/support/pages/cplex-optimization-studio-v128) as the solver.
 
 ## Executing the Matlab functions
 

@@ -80,7 +80,7 @@ def stat(model, sorted_res):
             reac_sen.append([i2, reac_list[i], aff_u[0], sen])
             
             
-    print (fva, stable, aff_avg, aff_avg_std, aff_max, aff_min)
+    print ('fva', 'stable', 'aff_avg', 'aff_avg_std', 'aff_max', 'aff_min',fva, stable, aff_avg, aff_avg_std, aff_max, aff_min)
 
 
 #np.savetxt("stat_results.csv", fba_np, delimiter=",")
