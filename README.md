@@ -24,6 +24,14 @@ The toolbox is developed for [MATLAB](mathworks.com) and uses the [cobratoolbox]
  * On python 3:
    * Make sure you have Pysces [CBMpy](https://pythonhosted.org/cbmpy/install_doc.html) installed.
    * Make sure you use [IBM_Cplex](https://www.ibm.com/support/pages/cplex-optimization-studio-v128) as the solver.
+   
+   
+## How to cite FBA_perturbation
+
+If you use this package, please cite the following article:
+
+* Loghmani SB, Veith N, Sahle S, Bergmann FT, Olivier BG, Kummer U. Inspecting the Solution Space of Genome-Scale Metabolic Models. Metabolites. 2022; 12(1):43. https://doi.org/10.3390/metabo12010043
+
 
 ## Executing the Matlab functions
 
